@@ -15,14 +15,24 @@ public class App {
     }, new VelocityTemplateEngine());
 
     get("/result", (request, response) -> {
-      String textInput = request.queryParams("textInput");
+      HashMap model = new HashMap();
+      String name = request.queryParams("name");
+
+      Tamagotchi myPet = new Tamagotchi(name);
+      Double food = myPet.getFoodLevel();
+      Double sleep = myPet.getSleepLevel();
+      Double activity = myPet.getActivityLevel();
+
+      String stringFood = Double.toString(food);
+      String stringSleep = Double.toString(sleep);
+      String stringActivity = Double.toString(activity);
 
       //call business logic functions here
-      String result = textInput;
-
-      HashMap model = new HashMap();
+      model.put("name", name);
+      model.put("food", stringFood);
+      model.put("sleep", stringSleep);
+      model.put("activity", stringActivity);
       model.put("template", "templates/output.vtl");
-      model.put("result", String.format(result));
       return new ModelAndView(model, layout);
     }, new VelocityTemplateEngine());
       //additional pages would go here

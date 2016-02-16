@@ -9,6 +9,8 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class IntegrationTest extends FluentTest {
   public WebDriver webDriver = new HtmlUnitDriver();
+
+  @Override
   public WebDriver getDefaultDriver() {
       return webDriver;
   }
@@ -19,26 +21,37 @@ public class IntegrationTest extends FluentTest {
 
 
 
-/*
+
   @Test
   public void rootTest() {
       goTo("http://localhost:4567/");
-      assertThat(pageSource()).contains("Enter change:");
+      assertThat(pageSource()).contains("Name your Tamagotchi");
   }
   @Test
-  public void getChange() {
+  public void namePet() {
     goTo("http://localhost:4567");
-    fill("#userChange").with("87");
+    fill("#name").with("toby");
     submit(".btn");
-    assertThat(pageSource()).contains("Your change for 87 cents is 3 quarters, 1 dime, 2 pennies.");
+    assertThat(pageSource()).contains("toby");
   }
+
   @Test
-  public void negativeNumber() {
-    goTo("http://localhost:4567");
-    fill("#userChange").with("-87");
+  public void startFoodLevel() {
+    goTo("http://localhost:4567/");
+    fill("#name").with("toby");
     submit(".btn");
-    assertThat(pageSource()).contains("Please enter a positive value");
+    assertThat(pageSource()).contains("10");
   }
-*/
+
+
+
+  // @Test
+  // public void negativeNumber() {
+  //   goTo("http://localhost:4567");
+  //   fill("#userChange").with("-87");
+  //   submit(".btn");
+  //   assertThat(pageSource()).contains("Please enter a positive value");
+  // }
+
 
 }

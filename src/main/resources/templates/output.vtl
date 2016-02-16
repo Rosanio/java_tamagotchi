@@ -1,10 +1,20 @@
-<h1></h1>
-<h2>Result:</h2>
-<h3>$result</h3>
+<h1>Keep $name in good health!</h1>
 
-<button class="btn btn-info" onclick="goBack()">Go Back</button>
-<script>
-function goBack() {
-    window.history.back();
-}
-</script>
+<div class="status">
+  <p>Food level: $food</p>
+</div>
+
+<div class="status">
+  <p>Sleep level: $sleep</p>
+</div>
+
+<div class="status">
+  <p>Activity level: $activity</p>
+</div>
+
+<form action="/result" method="post">
+  <button name="action" type="submit" value="feed">Feed $name</button>
+  <button name="action" type="submit" value="sleep">Put $name to sleep</button>
+  <button name="action" type="submit" value="play">Play with $name</button>
+  <button name="action" type="submit" value="time">Pass some time</button>
+</form>
