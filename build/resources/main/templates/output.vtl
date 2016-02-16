@@ -1,4 +1,24 @@
+#if(!$legitName)
+<h1>That pets time has passed...try again</h1>
+<form action='/result' method="post">
+  <div class="form-group">
+    <label for="name">Name your Tamagotchi!</label>
+    <input id="name" name="name" class="form-control" type="text">
+  </div>
+  <button type="submit" class="btn btn-info">Submit</button>
+</form>
+#else
+
 <h1>Keep $name in good health!</h1>
+
+<div class="graveyard">
+  <h3>Pet Cemetary</h3>
+  <ul>
+  #foreach($deadPet in $deadPets)
+    <li>$deadPet</li>
+  #end
+  </ul>
+</div>
 
 <div class="status">
   <p>Food level: $food</p>
@@ -21,6 +41,10 @@
   <button id="passTime" name="action" type="submit" value="time">Pass some time</button>
 </form>
 
+<a href="/" class="btn btn-success">Make another pet, animal lover?</a>
+
 #else
 <h3>Your pet is dead!</h3>
+<a href="/" class="btn btn-danger">Make another pet, murderer?</a>
+#end
 #end

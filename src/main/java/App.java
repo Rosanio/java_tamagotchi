@@ -1,5 +1,6 @@
 import java.util.HashMap;
 import spark.ModelAndView;
+import java.util.ArrayList;
 import spark.template.velocity.VelocityTemplateEngine;
 import static spark.Spark.*;
 
@@ -16,6 +17,7 @@ public class App {
 
     post("/result", (request, response) -> {
       HashMap model = new HashMap();
+      Boolean legitName = true;
 
       Tamagotchi myPet = request.session().attribute("pet");
       String name;
@@ -50,12 +52,35 @@ public class App {
       String stringSleep = Double.toString(sleep);
       String stringActivity = Double.toString(activity);
 
+
+      ArrayList<String> deadPets = request.session().attribute("deadPets");
+      if(deadPets == null) {
+        deadPets = new ArrayList<String>();
+        request.session().attribute("deadPets", deadPets);
+      }
+
+      for(String deadPet: deadPets) {
+        System.out.println(deadPet);
+        if(name.equals(deadPet)) {
+          legitName = false;
+          request.session().attribute("pet", null);
+        }
+      }
+      System.out.println(legitName);
+
+      if(!alive) {
+        deadPets.add(name);
+        request.session().attribute("pet", null);
+      }
+
       //call business logic functions here
       model.put("name", name); //"name" reference of name field in the vtl file, name references the value defined on this page
       model.put("food", stringFood);
       model.put("sleep", stringSleep);
       model.put("activity", stringActivity);
       model.put("alive", alive);
+      model.put("deadPets", deadPets);
+      model.put("legitName", legitName);
       model.put("template", "templates/output.vtl");
       return new ModelAndView(model, layout);
     }, new VelocityTemplateEngine());
