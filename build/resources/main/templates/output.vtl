@@ -12,9 +12,15 @@
   <p>Activity level: $activity</p>
 </div>
 
+
+#if ($alive)
 <form action="/result" method="post">
-  <button name="action" type="submit" value="feed">Feed $name</button>
-  <button name="action" type="submit" value="sleep">Put $name to sleep</button>
-  <button name="action" type="submit" value="play">Play with $name</button>
-  <button name="action" type="submit" value="time">Pass some time</button>
+  <button id="feed" name="action" type="submit" value="feed">Feed $name</button>
+  <button id="sleep" name="action" type="submit" value="sleep">Put $name to sleep</button>
+  <button id="play" name="action" type="submit" value="play">Play with $name</button>
+  <button id="passTime" name="action" type="submit" value="time">Pass some time</button>
 </form>
+
+#else
+<h3>Your pet is dead!</h3>
+#end

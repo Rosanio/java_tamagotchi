@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="UnitTest" tests="11" skipped="0" failures="0" errors="0" timestamp="2016-02-16T21:33:48" hostname="epicodus-65.local" time="0.008">
+<testsuite name="UnitTest" tests="11" skipped="0" failures="0" errors="0" timestamp="2016-02-16T22:23:24" hostname="epicodus-65.local" time="0.008">
   <properties/>
   <testcase name="tamagotchi_passTime" classname="UnitTest" time="0.0"/>
   <testcase name="tamagotchi_isSleeping" classname="UnitTest" time="0.0"/>
   <testcase name="tamagotchi_playWith" classname="UnitTest" time="0.0"/>
-  <testcase name="tamagotchi_maxActivity" classname="UnitTest" time="0.0"/>
-  <testcase name="tamagotchi_maxFood" classname="UnitTest" time="0.001"/>
+  <testcase name="tamagotchi_maxActivity" classname="UnitTest" time="0.001"/>
+  <testcase name="tamagotchi_maxFood" classname="UnitTest" time="0.0"/>
   <testcase name="tamagotchi_sleep" classname="UnitTest" time="0.0"/>
   <testcase name="tamagotchi_feed" classname="UnitTest" time="0.0"/>
   <testcase name="tamagotchi_isAlive" classname="UnitTest" time="0.0"/>
-  <testcase name="tamagotchi_isDead" classname="UnitTest" time="0.001"/>
+  <testcase name="tamagotchi_isDead" classname="UnitTest" time="0.0"/>
   <testcase name="tamagotchi_maxSleep" classname="UnitTest" time="0.0"/>
   <testcase name="tamagotchi_intstantiatesCorrectly" classname="UnitTest" time="0.001"/>
   <system-out><![CDATA[]]></system-out>

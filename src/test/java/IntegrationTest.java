@@ -43,6 +43,33 @@ public class IntegrationTest extends FluentTest {
     assertThat(pageSource()).contains("10");
   }
 
+  @Test
+  public void clickPassTime() {
+    goTo("http://localhost:4567/");
+    fill("#name").with("toby");
+    submit(".btn");
+    submit("#passTime");
+    assertThat(pageSource()).contains("9");
+  }
+
+  @Test
+  public void stopCountingDownOnDeath() {
+    goTo("http://localhost:4567/");
+    fill("#name").with("toby");
+    submit(".btn");
+    submit("#passTime");
+    submit("#passTime");
+    submit("#passTime");
+    submit("#passTime");
+    submit("#passTime");
+    submit("#passTime");
+    submit("#passTime");
+    submit("#passTime");
+    submit("#passTime");
+    submit("#passTime");
+    assertThat(pageSource()).contains("dead");
+  }
+
 
 
   // @Test

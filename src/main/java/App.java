@@ -14,11 +14,34 @@ public class App {
       return new ModelAndView(model, layout);
     }, new VelocityTemplateEngine());
 
-    get("/result", (request, response) -> {
+    post("/result", (request, response) -> {
       HashMap model = new HashMap();
-      String name = request.queryParams("name");
 
-      Tamagotchi myPet = new Tamagotchi(name);
+      Tamagotchi myPet = request.session().attribute("pet");
+      String name;
+      if(myPet == null) {
+        name = request.queryParams("name");
+        myPet = new Tamagotchi(name);
+        request.session().attribute("pet", myPet);
+      } else {
+        name = myPet.getName();
+      }
+
+      String action = request.queryParams("action");
+      if(action!=null) {
+        if (action.equals("feed")) {
+          myPet.feed();
+        } else if (action.equals("sleep")) {
+          myPet.sleep();
+        } else if (action.equals("play")) {
+          myPet.playWith();
+        } else if (action.equals("time")) {
+          myPet.passTime();
+        }
+      }
+
+      Boolean alive = myPet.getAliveLevel();
+
       Double food = myPet.getFoodLevel();
       Double sleep = myPet.getSleepLevel();
       Double activity = myPet.getActivityLevel();
@@ -28,10 +51,11 @@ public class App {
       String stringActivity = Double.toString(activity);
 
       //call business logic functions here
-      model.put("name", name);
+      model.put("name", name); //"name" reference of name field in the vtl file, name references the value defined on this page
       model.put("food", stringFood);
       model.put("sleep", stringSleep);
       model.put("activity", stringActivity);
+      model.put("alive", alive);
       model.put("template", "templates/output.vtl");
       return new ModelAndView(model, layout);
     }, new VelocityTemplateEngine());
