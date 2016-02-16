@@ -7,21 +7,48 @@ public class UnitTest {
   public void tamagotchi_intstantiatesCorrectly() {
     Tamagotchi myPet = new Tamagotchi("mittens");
     assertEquals("mittens", myPet.getName());
-    assertEquals(10, (int)myPet.getFoodLevel());
-    assertEquals(10, (int)myPet.getSleepLevel());
-    assertEquals(10, (int)myPet.getActivityLevel());
+    assertEquals(10.0, (double)myPet.getFoodLevel(), 0.002);
+    assertEquals(10.0, (double)myPet.getSleepLevel(), 0.002);
+    assertEquals(10.0, (double)myPet.getActivityLevel(), 0.002);
   }
 
   @Test
   public void tamagotchi_passTime() {
     Tamagotchi myPet = new Tamagotchi("mittens");
     myPet.passTime();
-    assertEquals(9, (int)myPet.getFoodLevel());
-    assertEquals(9, (int)myPet.getSleepLevel());
-    assertEquals(9, (int)myPet.getActivityLevel());
+    assertEquals(9.0, (double)myPet.getFoodLevel(), 0.002);
+    assertEquals(9.0, (double)myPet.getSleepLevel(), 0.002);
+    assertEquals(9.0, (double)myPet.getActivityLevel(), 0.002);
   }
 
-  
+  @Test
+  public void tamagotchi_feed() {
+    Tamagotchi myPet = new Tamagotchi("pikachu");
+    myPet.passTime();
+    myPet.passTime();
+    myPet.feed();
+    assertEquals(10.0, (double)myPet.getFoodLevel(), 0.002);
+    assertEquals(7.0, (double)myPet.getSleepLevel(), 0.002);
+    assertEquals(7.0, (double)myPet.getActivityLevel(), 0.002);
+  }
+
+  @Test
+  public void tamagotchi_sleep() {
+    Tamagotchi myPet = new Tamagotchi("mittens");
+    assertEquals(true, myPet.sleep());
+  }
+
+  @Test
+  public void tamagotchi_isSleeping() {
+    Tamagotchi myPet = new Tamagotchi("mittens");
+    myPet.passTime();
+    myPet.passTime();
+    myPet.sleep();
+    myPet.passTime();
+    assertEquals(7.5, (double)myPet.getFoodLevel(), 0.002);
+    assertEquals(10.0, (double)myPet.getSleepLevel(), 0.002);
+    assertEquals(7.5, (double)myPet.getActivityLevel(), 0.002);
+  }
 
 /*
 @Test
