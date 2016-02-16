@@ -12,6 +12,16 @@ public class UnitTest {
     assertEquals(10, (int)myPet.getActivityLevel());
   }
 
+  @Test
+  public void tamagotchi_passTime() {
+    Tamagotchi myPet = new Tamagotchi("mittens");
+    myPet.passTime();
+    assertEquals(9, (int)myPet.getFoodLevel());
+    assertEquals(9, (int)myPet.getSleepLevel());
+    assertEquals(9, (int)myPet.getActivityLevel());
+  }
+
+  
 
 /*
 @Test

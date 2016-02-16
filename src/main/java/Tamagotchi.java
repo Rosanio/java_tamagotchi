@@ -20,4 +20,10 @@ public class Tamagotchi {
   public Integer getActivityLevel() {
     return mActivity;
   }
+  public void passTime() {
+    mFood -= 1;
+    mSleep -= 1;
+    mActivity -= 1;
+  }
+
 }
