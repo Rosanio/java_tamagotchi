@@ -3,6 +3,14 @@ import static org.junit.Assert.*;
 
 public class UnitTest {
 
+  @Test
+  public void tamagotchi_intstantiatesCorrectly() {
+    Tamagotchi myPet = new Tamagotchi("mittens");
+    assertEquals("mittens", myPet.getName());
+    assertEquals(10, (int)myPet.getFoodLevel());
+    assertEquals(10, (int)myPet.getSleepLevel());
+    assertEquals(10, (int)myPet.getActivityLevel());
+  }
 
 
 /*
