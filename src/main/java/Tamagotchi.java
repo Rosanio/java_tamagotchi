@@ -30,6 +30,10 @@ public class Tamagotchi {
     return mIsAlive;
   }
 
+  public Boolean getSleepState() {
+    return mIsSleeping;
+  }
+
   public void passTime() {
     if(mIsSleeping) {
       mFood -= 0.5;

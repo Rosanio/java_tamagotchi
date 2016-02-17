@@ -43,6 +43,7 @@ public class App {
       }
 
       Boolean alive = myPet.getAliveLevel();
+      Boolean asleep = myPet.getSleepState();
 
       Double food = myPet.getFoodLevel();
       Double sleep = myPet.getSleepLevel();
@@ -81,6 +82,7 @@ public class App {
       model.put("alive", alive);
       model.put("deadPets", deadPets);
       model.put("legitName", legitName);
+      model.put("asleep", asleep);
       model.put("template", "templates/output.vtl");
       return new ModelAndView(model, layout);
     }, new VelocityTemplateEngine());

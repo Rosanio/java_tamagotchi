@@ -1,5 +1,5 @@
 #if(!$legitName)
-<h1>That pets time has passed...try again</h1>
+<h1>That pet's time has passed...try again</h1>
 <form action='/result' method="post">
   <div class="form-group">
     <label for="name">Name your Tamagotchi!</label>
@@ -13,7 +13,7 @@
 
 <div class="graveyard">
   <h3>Pet Cemetary</h3>
-  <ul>
+  <ul class="gravestone">
   #foreach($deadPet in $deadPets)
     <li>$deadPet</li>
   #end
@@ -35,16 +35,45 @@
 
 #if ($alive)
 <form action="/result" method="post">
-  <button id="feed" name="action" type="submit" value="feed">Feed $name</button>
-  <button id="sleep" name="action" type="submit" value="sleep">Put $name to sleep</button>
-  <button id="play" name="action" type="submit" value="play">Play with $name</button>
-  <button id="passTime" name="action" type="submit" value="time">Pass some time</button>
+
+  #if(!$asleep)
+  <button id="feed" class="action btn btn-info" name="action" type="submit" value="feed">Feed $name</button>
+  <button id="sleep" class="action btn btn-info" name="action" type="submit" value="sleep">Put $name to sleep</button>
+  <button id="play" class="action btn btn-info" name="action" type="submit" value="play">Play with $name</button>
+  #else
+  <button id="feed" class="action btn btn-info" name="action" type="submit" value="feed" disabled>Feed $name</button>
+  <button id="sleep" class="action btn btn-info" name="action" type="submit" value="sleep">Wake $name up</button>
+  <button id="play" class="action btn btn-info" name="action" type="submit" value="play" disabled>Play with $name</button>
+  #end
+  <button id="passTime" class="action btn btn-info" name="action" type="submit" value="time">Pass some time</button>
 </form>
 
-<a href="/" class="btn btn-success">Make another pet, animal lover?</a>
+<a href="/" class="newPet btn btn-success">Make another pet, animal lover?</a>
 
 #else
 <h3>Your pet is dead!</h3>
-<a href="/" class="btn btn-danger">Make another pet, murderer?</a>
+#if($deadPets.size() == 1)
+<a href="/" class="newPet btn btn-danger">Make another pet, murderer?</a>
+#end
+#if($deadPets.size() == 2)
+<a href="/" class="newPet btn btn-danger">Be more careful this time...</a>
+#end
+#if($deadPets.size() == 3)
+<a href="/" class="newPet btn btn-danger">You aren't very good at this, are you?</a>
+#end
+#if($deadPets.size() == 4)
+<a href="/" class="newPet btn btn-danger">Ok, you need to stop.</a>
+#end
+#if($deadPets.size() == 5)
+<a href="/" class="newPet btn btn-danger">Really?</a>
+#end
+#if($deadPets.size() == 6)
+<a href="/" class="newPet btn btn-danger">You're a monster!</a>
+#end
+#if($deadPets.size() == 7)
+<a href="#" class="newPet btn btn-danger">I can't in good conscience give you another animal.</a>
+#end
+
+
 #end
 #end
